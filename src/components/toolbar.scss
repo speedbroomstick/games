@@ -1,0 +1,30 @@
+.toolbar{
+    display: flex;
+    width: 100%;
+    margin-top: 2vw;
+}
+label{
+    color: white;
+}
+.search{
+    width: 100%;
+    background-color: rgb(27, 27, 27);
+    border-radius: 20px;
+    border: none;
+    margin: 0 2vw 0 2vw;
+    padding-left: 4%;
+    color: white;
+    font-size: 1vw;
+}
+.inputSearch{
+    display: flex;
+    width: 80%;
+    position: relative;
+}
+.glass{
+    font-size: 1.5vw;
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    left: 2.5vw;
+    top: 0.5vw;
+}

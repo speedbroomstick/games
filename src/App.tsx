@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import Toolbar from './components/Toolbar'
 
 export default function App() {
