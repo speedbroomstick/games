@@ -8,5 +8,15 @@ body{
     background-color: rgb(11, 11, 11);
     background-attachment: fixed; 
     background-size: 100% 100%; 
-    overflow-x: hidden; /* Скрываем горизонтальный скролл */
+    overflow-x: hidden; 
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    .content{
+        display: flex;
+        margin-top: 5vw;
+        
+    }
 }

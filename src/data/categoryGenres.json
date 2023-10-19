@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "name": "Action",
+      "url": "/action.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Adventure",
+      "url": "/adventure.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Casual",
+      "url": "/casual.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Indie",
+        "url": "/indie.jpg"
+      },
+      {
+        "id": 5,
+        "name": "RPG",
+        "url": "/rpg.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Shooter",
+        "url": "/shooter.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Simulation",
+        "url": "/simulation.jpg"
+      },
+      {
+        "id": 8,
+        "name": "Strategy",
+        "url": "/strategy.jpg"
+      }
+  ]
+  

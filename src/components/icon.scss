@@ -1,6 +1,17 @@
+.containerIcon{
+    display: flex;
+    align-items: center;
+}
 .icon{
     width: 3vw;
     height: 3vw;
     background-color: white;
     border-radius: 20%;
+    background-size: cover;
+    background-repeat: no-repeat;  
+}
+.textIcon{
+    margin-left: 1vw;
+    font-size: 1vw;
+    color: rgba(255, 255, 255, 0.7);
 }

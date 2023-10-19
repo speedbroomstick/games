@@ -6,7 +6,7 @@ import './toolbar.scss'
 export default function Toolbar(){
     return(
         <div className="toolbar">            
-            <Icon url="../assets/game-icon.svg"/>
+            <Icon url="/game-icon.svg"/>
             <SearchInput/>
             <Switcher/>
         </div>
