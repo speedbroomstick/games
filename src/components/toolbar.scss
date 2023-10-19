@@ -1,5 +1,7 @@
 .toolbar{
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     margin-top: 2vw;
 }
@@ -8,6 +10,7 @@ label{
 }
 .search{
     width: 100%;
+    height: 2.4vw;
     background-color: rgb(27, 27, 27);
     border-radius: 20px;
     border: none;
@@ -27,4 +30,57 @@ label{
     position: absolute;
     left: 2.5vw;
     top: 0.5vw;
+}
+.switch{
+    display: flex;
+    align-items: center;
+}
+input[type="checkbox"]{
+    appearance: none;
+    width: 3vw;
+    height: 1.5vw;
+    background-color: #fff;
+    margin: 0 1vw 0 0 ;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+}
+input[type="checkbox"]::after{
+    content: "";
+    position: absolute;
+    width: 1.2vw;
+    height: 1.2vw;
+    border-radius: 50%;
+    top: 10%;
+    left: 6%;
+    background-color: rgba(162, 162, 162, 0.8);
+}
+input[type="checkbox"]:checked {
+    background-color: #75fb86fd;
+}
+input[type="checkbox"]:checked::after {
+    background-color: #ffffff;
+    animation: movingCircle 0.3s forwards; 
+  }
+input[type="checkbox"]:not(:checked)::after {
+    animation: reverseMovingCircle 0.3s forwards; 
+}
+@keyframes movingCircle{
+    0%{
+        left: 6%;
+    }
+    100%{
+        left: 50%;
+    }
+}
+@keyframes reverseMovingCircle {
+    0% {
+        left: 50%;
+    }
+    100% {
+        left: 6%;
+    }
+}
+.labelSwitch{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

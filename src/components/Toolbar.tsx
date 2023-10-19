@@ -26,7 +26,7 @@ function Switcher(){
     return(
         <div className="switch">
             <input type="checkbox"></input>
-            <label>Dark mode</label>
+            <label className="labelSwitch">Dark Mode</label>
         </div>        
     )
 }
