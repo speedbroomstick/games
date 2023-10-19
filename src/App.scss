@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'myFont';
+    src: url('/font/font1.woff2') format('woff2'), 
+         url('/font/font1.woff') format('woff'),
+         url('/font/font1.ttf') format('ttf');  
+}
 *{
     margin: 0;
     padding: 0;

@@ -14,7 +14,7 @@ export default function Genres(){
         <div className="genres">
             <h1 className="headline">Genres</h1>
             {categorys.map(category=>(
-                <Icon url={category.url}>{category.name}</Icon>
+                <Icon url={category.url} size={{width:2.3,height:2.3}} margin={1}>{category.name}</Icon>
             ))}
         </div>
     )
