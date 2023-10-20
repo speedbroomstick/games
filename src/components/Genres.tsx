@@ -17,7 +17,7 @@ export default function Genres() {
         <Icon
           key={category.id}
           url={category.url}
-          size={{ width: 2.3, height: 2.3 }}
+          size={{ width: 3, height: 3 }}
           margin={1}
           animation={true}
         >

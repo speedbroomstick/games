@@ -11,7 +11,7 @@ interface Props{
     animation?:boolean;
 }
 
-export default function Icon({url, children,size={width:3,height:3}, margin=0,animation=false}:Props){
+export default function Icon({url, children,size={width:4,height:4}, margin=0,animation=false}:Props){
     const iconStyle = {
         backgroundImage: `url(${url})`,
         width: `${size.width}vw`,
