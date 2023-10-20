@@ -6,7 +6,13 @@
     background-color: white;
     border-radius: 20%;
     background-size: cover;
-    background-repeat: no-repeat;  
+    background-repeat: no-repeat;
+    &.animation{
+        cursor: pointer;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
 }
 .textIcon{
     margin-left: 1vw;

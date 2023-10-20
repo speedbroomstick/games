@@ -8,9 +8,10 @@ interface Props{
         height: number;
     };
     margin?: number;
+    animation?:boolean;
 }
 
-export default function Icon({url, children,size={width:3,height:3}, margin=0}:Props){
+export default function Icon({url, children,size={width:3,height:3}, margin=0,animation=false}:Props){
     const iconStyle = {
         backgroundImage: `url(${url})`,
         width: `${size.width}vw`,
@@ -19,7 +20,7 @@ export default function Icon({url, children,size={width:3,height:3}, margin=0}:P
 
     return(
         <div className="containerIcon" style={{marginBottom:`${margin}vw`}}>
-            <div className="icon" style={iconStyle}></div>
+            <div className={animation ? 'icon animation' : 'icon'} style={iconStyle}></div>
             { children ? <p className='textIcon'>{children}</p>:null}
         </div>
     )

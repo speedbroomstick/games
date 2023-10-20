@@ -1,0 +1,42 @@
+.board{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 15vw;
+    .headline{
+        font-size: 5vw;
+        margin: -2vw 0 0 0;
+        font-family: 'myFont';
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .filters{
+        display: flex;
+    }
+
+    .custom-select {
+        position: relative;
+        width: 12vw;
+        margin: 2vw 2vw 0 0 ;
+
+        select{
+            appearance: none;
+            width: 12vw;
+            height: 3vw;
+            background-color: rgb(35, 35, 35);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding-left: 1vw;
+            font-family: 'myFont';
+        }
+        .arrow{
+            position: absolute;
+            font-size: 1.3vw;
+            color: white;
+            top: 1vw;
+            right: 2vw;
+        }
+
+      }
+      
+}
