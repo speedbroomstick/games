@@ -3,21 +3,26 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import Icon from "./Icon"
 import './toolbar.scss'
 
-export default function Toolbar(){
+interface Toolbar{
+    onChange(value:string):void;
+}
+
+export default function Toolbar({onChange}:Toolbar){
+    
     return(
         <div className="toolbar">            
             <Icon url="/game-icon.svg"/>
-            <SearchInput/>
+            <SearchInput onChange={onChange} />
             <Switcher/>
         </div>
     )
 } 
 
-function SearchInput(){
+function SearchInput({onChange}:Toolbar){
     return(
         <div className="inputSearch">
             <FontAwesomeIcon className='glass' icon={faMagnifyingGlass} />
-            <input className="search" type="text" placeholder="Search games..."/>
+            <input className="search" type="text" onChange={(e)=>onChange(e.target.value)} placeholder="Search games..."/>
         </div>
     )
 }
