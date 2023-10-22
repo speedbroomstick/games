@@ -3,8 +3,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    color: rgb(0, 0, 0);
 }
-label{
+.toolbarDarkMode{
     color: white;
 }
 .search{
@@ -15,7 +16,6 @@ label{
     border: none;
     margin: 0 2vw 0 2vw;
     padding-left: 4%;
-    color: white;
     font-size: 1vw;
 }
 .inputSearch{

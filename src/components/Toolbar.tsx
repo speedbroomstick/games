@@ -2,23 +2,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import Icon from "./Icon"
 import './toolbar.scss'
+import { IInput, ISwither, IToolbar } from '../models/models'
 
-interface Toolbar{
-    onChange(value:string):void;
-}
-
-export default function Toolbar({onChange}:Toolbar){
+export default function Toolbar({onChange, changeTheme, theme}:IToolbar){
     
     return(
-        <div className="toolbar">            
+        <div className={theme? "toolbar toolbarDarkMode":"toolbar"}>            
             <Icon url="/game-icon.svg"/>
             <SearchInput onChange={onChange} />
-            <Switcher/>
+            <Switcher changeTheme={changeTheme}/>
         </div>
     )
 } 
 
-function SearchInput({onChange}:Toolbar){
+function SearchInput({onChange}:IInput){
     return(
         <div className="inputSearch">
             <FontAwesomeIcon className='glass' icon={faMagnifyingGlass} />
@@ -27,10 +24,10 @@ function SearchInput({onChange}:Toolbar){
     )
 }
 
-function Switcher(){
+function Switcher({changeTheme}:ISwither){
     return(
         <div className="switch">
-            <input type="checkbox"></input>
+            <input type="checkbox" onChange={e => changeTheme(e.target.checked)}></input>
             <label className="labelSwitch">Dark Mode</label>
         </div>        
     )

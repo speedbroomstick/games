@@ -6,13 +6,15 @@ import { useState } from 'react'
 
 export default function App() {
   const [searchText, setSearchText] = useState("");
+  const [theme,setTheme] = useState(true);
+
   const handleSearchTextChange = (newValue: string) => {
     setSearchText(newValue);
   }
 
   return (
-    <div className="wrapper">
-      <Toolbar onChange={handleSearchTextChange}/>
+    <div className={theme ? "wrapper wrraperBlackTheme" : "wrapper"}>
+      <Toolbar theme={theme} onChange={handleSearchTextChange} changeTheme={setTheme}/>
       <div className="content">
         <Genres></Genres>
         <BoardGames inputText={searchText}></BoardGames>

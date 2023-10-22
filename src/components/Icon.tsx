@@ -1,17 +1,7 @@
+import { Iicon } from '../models/models';
 import './icon.scss'
 
-interface Props{
-    url: string;
-    children?: string;
-    size?: {
-        width: number;
-        height: number;
-    };
-    margin?: number;
-    animation?:boolean;
-}
-
-export default function Icon({url, children,size={width:4,height:4}, margin=0,animation=false}:Props){
+export default function Icon({url, children,size={width:4,height:4}, margin=0,animation=false}:Iicon){
     const iconStyle = {
         backgroundImage: `url(${url})`,
         width: `${size.width}vw`,

@@ -13,46 +13,52 @@ import {
   faXbox,
 } from "@fortawesome/free-brands-svg-icons";
 import gameDateJson from "../data/games.json";
+import { BoardGamesProps, Game, IFilterGroup } from "../models/models";
 
-interface Game {
-  id?: number;
-  name: string;
-  rating: number;
-  url: string;
-  genre?: string;
-  platform: {
-    apple: boolean;
-    linux: boolean;
-    xbox: boolean;
-    windows: boolean;
-  };
-  date?: string;
-}
-interface BoardGamesProps {
-  inputText: string;
-}
 export default function BoardGames({ inputText }: BoardGamesProps) {
 
   const [gameDate, setGameDate] = useState<Game[]>(gameDateJson);
+  const [filterAtribute, setFilterAtribute] = useState("");
+  const [filterOption, SetFilterOption] = useState(""); 
 
   useEffect(() => {
       const filteredGames = gameDateJson.filter((game) => {
         return  game.name.toLowerCase().includes(inputText.toLowerCase());
     });
       inputText ? setGameDate(filteredGames): setGameDate(gameDateJson);
-  }, [inputText, gameDate]);
+  }, [inputText]);
   
+  useEffect(()=>{
+      const filteredGames = gameDateJson.filter((game)=>{
+        return game.platform[filterAtribute as keyof Game["platform"]] === true;
+      });
+      filterAtribute ? setGameDate(filteredGames): setGameDate(gameDateJson);
+  },[filterAtribute])
+
+  useEffect(()=>{
+    if(filterOption === "By Rating"){
+    const sortedGames = [...gameDateJson];
+    sortedGames.sort((a, b) => b.rating - a.rating);
+    setGameDate(sortedGames);
+    }else if(filterOption === "By Date"){
+      const sortedGames = [...gameDateJson];
+      sortedGames.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setGameDate(sortedGames);
+    }
+},[filterOption])
+
   return (
     <div className="board">
       <h1 className="headline">Games</h1>
       <div className="filters">
-        <FilterGroup />
-        <FilterGroup />
+        <FilterGroup onChangeFilter={setFilterAtribute} options={["xbox","windows","apple","linux"]}/>
+        <FilterGroup onChangeFilter={SetFilterOption} options={["By Rating","By Date"]} /> 
       </div>
       <div className="cardsBoard">
         {gameDate.map((game) => (
-          <CardGame
-            name={game.name}
+          <CardGame 
+          key={game.id}  
+          name={game.name}
             rating={game.rating}
             url={game.url}
             platform={game.platform}
@@ -63,7 +69,7 @@ export default function BoardGames({ inputText }: BoardGamesProps) {
   );
 }
 
-function FilterGroup() {
+function FilterGroup({options, onChangeFilter}:IFilterGroup) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -72,10 +78,11 @@ function FilterGroup() {
         className="arrow"
         icon={isOpen ? faChevronUp : faChevronDown}
       />
-      <select onFocus={() => setIsOpen(true)} onBlur={() => setIsOpen(false)}>
-        <option>Опция 1</option>
-        <option>Опция 2</option>
-        <option>Опция 3</option>
+      <select onChange={e => onChangeFilter(e.target.value)} onFocus={() => setIsOpen(true)} onBlur={() => setIsOpen(false)}>
+        <option value="" disabled selected hidden>Choose option</option>
+        {options.map(option=>(
+                  <option key={option} value={option}>{option}</option>
+        ))}
       </select>
     </div>
   );
