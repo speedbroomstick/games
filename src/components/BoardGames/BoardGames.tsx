@@ -1,44 +1,11 @@
 import { useEffect, useReducer, useState } from "react";
 import "./boardGames.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronDown,
-  faChevronUp,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faApple,
-  faLinux,
-  faWindows,
-  faXbox,
-} from "@fortawesome/free-brands-svg-icons";
+
 import gameDateJson from "../../data/games.json";
-import { BoardGamesProps, Game, IFilterGroup } from "../../models/models";
-
-type State = {
-  filterAttribute: string;
-  filterOption: string;
-};
-
-type Action =
-  | { type: 'ChangeFilterAttribute'; payload: string }
-  | { type: 'ChangeFilterOption'; payload: string };
-
-const initialState: State = {
-  filterAttribute: '',
-  filterOption: '',
-};
-
-const reducer = (state: State, action: Action) => {
-  switch (action.type) {
-    case 'ChangeFilterAttribute':
-      return { ...state, filterAttribute: action.payload };
-    case 'ChangeFilterOption':
-      return { ...state, filterOption: action.payload };
-    default:
-      return state;
-  }
-};
+import { BoardGamesProps, Game } from "../../models/models";
+import CardGame from "../CardGame/CardGame";
+import FilterGroup from "../FilterGroup/FilterGroup";
+import { initialState, reducer } from "../../store/filterReducer";
 
 export default function BoardGames({ inputText }: BoardGamesProps) {
   const [gameDate, setGameDate] = useState<Game[]>(gameDateJson);
@@ -88,55 +55,6 @@ export default function BoardGames({ inputText }: BoardGamesProps) {
           />
         ))}
       </div>
-    </div>
-  );
-}
-
-function FilterGroup({options, onChangeFilter}:IFilterGroup) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="custom-select">
-      <FontAwesomeIcon
-        className="arrow"
-        icon={isOpen ? faChevronUp : faChevronDown}
-      />
-      <select onChange={e => onChangeFilter(e.target.value)} onFocus={() => setIsOpen(true)} onBlur={() => setIsOpen(false)}>
-        <option value="" disabled selected hidden>Choose option</option>
-        {options.map(option=>(
-                  <option key={option} value={option}>{option}</option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
-function CardGame({ name, rating, url, platform }: Game) {
-  return (
-    <div className="cardGame">
-      <div
-        className="photoGame"
-        style={{ backgroundImage: `url(${url})` }}
-      ></div>
-      <div className="iconsSystems">
-        {platform.apple ? (
-          <FontAwesomeIcon className="iconSystem" icon={faApple} />
-        ) : null}
-        {platform.windows ? (
-          <FontAwesomeIcon className="iconSystem" icon={faWindows} />
-        ) : null}
-        {platform.linux ? (
-          <FontAwesomeIcon className="iconSystem" icon={faLinux} />
-        ) : null}
-        {platform.xbox ? (
-          <FontAwesomeIcon className="iconSystem" icon={faXbox} />
-        ) : null}
-        <div className="rating">
-          <p className="ratingText">{rating}</p>
-          <FontAwesomeIcon className="star" icon={faStar} />
-        </div>
-      </div>
-      <h1 className="gameName">{name}</h1>
     </div>
   );
 }
