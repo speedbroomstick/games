@@ -1,7 +1,7 @@
-import Icon from "./Icon";
+import Icon from "../Icon/Icon";
 import "./genres.scss";
-import dataCategory from "../data/categoryGenres.json";
-import { Category } from "../models/models";
+import dataCategory from "../../data/categoryGenres.json";
+import { Category } from "../../models/models";
 
 export default function Genres() {
   const categorys: Category[] = dataCategory;

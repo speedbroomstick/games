@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import Icon from "./Icon"
+import Icon from "../Icon/Icon"
 import './toolbar.scss'
-import { IInput, ISwither, IToolbar } from '../models/models'
+import { IInput, ISwither, IToolbar } from '../../models/models'
 
 export default function Toolbar({onChange, changeTheme, theme}:IToolbar){
     

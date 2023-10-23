@@ -1,4 +1,4 @@
-import { Iicon } from '../models/models';
+import { Iicon } from '../../models/models';
 import './icon.scss'
 
 export default function Icon({url, children,size={width:4,height:4}, margin=0,animation=false}:Iicon){

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./boardGames.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,53 +12,76 @@ import {
   faWindows,
   faXbox,
 } from "@fortawesome/free-brands-svg-icons";
-import gameDateJson from "../data/games.json";
-import { BoardGamesProps, Game, IFilterGroup } from "../models/models";
+import gameDateJson from "../../data/games.json";
+import { BoardGamesProps, Game, IFilterGroup } from "../../models/models";
+
+type State = {
+  filterAttribute: string;
+  filterOption: string;
+};
+
+type Action =
+  | { type: 'ChangeFilterAttribute'; payload: string }
+  | { type: 'ChangeFilterOption'; payload: string };
+
+const initialState: State = {
+  filterAttribute: '',
+  filterOption: '',
+};
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case 'ChangeFilterAttribute':
+      return { ...state, filterAttribute: action.payload };
+    case 'ChangeFilterOption':
+      return { ...state, filterOption: action.payload };
+    default:
+      return state;
+  }
+};
 
 export default function BoardGames({ inputText }: BoardGamesProps) {
-
   const [gameDate, setGameDate] = useState<Game[]>(gameDateJson);
-  const [filterAtribute, setFilterAtribute] = useState("");
-  const [filterOption, SetFilterOption] = useState(""); 
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-      const filteredGames = gameDateJson.filter((game) => {
-        return  game.name.toLowerCase().includes(inputText.toLowerCase());
+    const filteredGames = gameDateJson.filter((game) => {
+      return game.name.toLowerCase().includes(inputText.toLowerCase());
     });
-      inputText ? setGameDate(filteredGames): setGameDate(gameDateJson);
+    inputText ? setGameDate(filteredGames) : setGameDate(gameDateJson);
   }, [inputText]);
-  
-  useEffect(()=>{
-      const filteredGames = gameDateJson.filter((game)=>{
-        return game.platform[filterAtribute as keyof Game["platform"]] === true;
-      });
-      filterAtribute ? setGameDate(filteredGames): setGameDate(gameDateJson);
-  },[filterAtribute])
 
-  useEffect(()=>{
-    if(filterOption === "By Rating"){
-    const sortedGames = [...gameDateJson];
-    sortedGames.sort((a, b) => b.rating - a.rating);
-    setGameDate(sortedGames);
-    }else if(filterOption === "By Date"){
+  useEffect(() => {
+    const filteredGames = gameDateJson.filter((game) => {
+      return game.platform[state.filterAttribute as keyof Game['platform']] === true;
+    });
+    state.filterAttribute ? setGameDate(filteredGames) : setGameDate(gameDateJson);
+  }, [state.filterAttribute]);
+
+  useEffect(() => {
+    if (state.filterOption === 'By Rating') {
+      const sortedGames = [...gameDateJson];
+      sortedGames.sort((a, b) => b.rating - a.rating);
+      setGameDate(sortedGames);
+    } else if (state.filterOption === 'By Date') {
       const sortedGames = [...gameDateJson];
       sortedGames.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       setGameDate(sortedGames);
     }
-},[filterOption])
+  }, [state.filterOption]);
 
   return (
     <div className="board">
       <h1 className="headline">Games</h1>
       <div className="filters">
-        <FilterGroup onChangeFilter={setFilterAtribute} options={["xbox","windows","apple","linux"]}/>
-        <FilterGroup onChangeFilter={SetFilterOption} options={["By Rating","By Date"]} /> 
+        <FilterGroup onChangeFilter={(value) => dispatch({ type: 'ChangeFilterAttribute', payload: value })} options={['xbox', 'windows', 'apple', 'linux']} />
+        <FilterGroup onChangeFilter={(value) => dispatch({ type: 'ChangeFilterOption', payload: value })} options={['By Rating', 'By Date']} />
       </div>
       <div className="cardsBoard">
         {gameDate.map((game) => (
-          <CardGame 
-          key={game.id}  
-          name={game.name}
+          <CardGame
+            key={game.id}
+            name={game.name}
             rating={game.rating}
             url={game.url}
             platform={game.platform}

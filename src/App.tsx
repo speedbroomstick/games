@@ -1,7 +1,7 @@
 import './App.scss'
-import Toolbar from './components/Toolbar'
-import Genres from './components/Genres'
-import BoardGames from './components/BoardGames'
+import Toolbar from './components/Toolbar/Toolbar'
+import Genres from './components/Genres/Genres'
+import BoardGames from './components/BoardGames/BoardGames'
 import { useState } from 'react'
 
 export default function App() {
