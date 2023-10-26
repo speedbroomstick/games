@@ -1,7 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import Icon from "../Icon/Icon"
 import './toolbar.scss'
+import {PiMagnifyingGlassThin} from "react-icons/pi"
 import { IInput, ISwither, IToolbar } from '../../models/models'
 
 export default function Toolbar({onChange, changeTheme, theme}:IToolbar){
@@ -18,7 +17,7 @@ export default function Toolbar({onChange, changeTheme, theme}:IToolbar){
 function SearchInput({onChange}:IInput){
     return(
         <div className="inputSearch">
-            <FontAwesomeIcon className='glass' icon={faMagnifyingGlass} />
+            <PiMagnifyingGlassThin className="glass" />
             <input className="search" type="text" onChange={(e)=>onChange(e.target.value)} placeholder="Search games..."/>
         </div>
     )
